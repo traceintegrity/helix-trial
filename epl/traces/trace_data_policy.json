@@ -1,0 +1,24 @@
+{
+  "policy_name": "default_safe_preview_v1",
+  "bundle_payload_mode": "full_fidelity",
+  "preview": {
+    "session_limit": 2,
+    "span_limit": 8,
+    "max_string_length": 120,
+    "redact_key_fragments": [
+      "input",
+      "output",
+      "prompt",
+      "completion",
+      "response",
+      "query",
+      "statement",
+      "content",
+      "message",
+      "argument",
+      "url",
+      "uri",
+      "email"
+    ]
+  }
+}
