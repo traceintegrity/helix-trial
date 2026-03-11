@@ -1,23 +1,25 @@
 # Helix Trial: Community Edition
 
-**Know in minutes whether your AI traces are audit-ready.**
+**Find out in minutes whether your AI traces are audit-ready.**
 
-Helix ingests your existing trace exports, generates a cryptographic archive bundle, replays it for verification, and tells you plainly whether your workload is a fit — all on your own machine, no account required.
+Helix ingests your existing trace exports, builds a cryptographic archive bundle, replays it to verify integrity, and returns a plain verdict on whether your workload fits — all locally, no account required.
 
-This is the public open-source trial. Run it once to answer three questions:
+Built for teams preparing for **EU AI Act Article 12** logging requirements and anyone who needs verifiable, tamper-evident trace archives.
 
-- Can Helix ingest your trace export cleanly?
-- Does the archive replay correctly?
-- Does your workload beat `source + gzip`?
+### What the trial answers
+
+1. Can Helix ingest your trace format cleanly?
+2. Does the archive replay bit-for-bit?
+3. Does your workload compress better than `source + gzip`?
 
 > Enterprise audit, compliance, and drift modules are not included in this package.
 
 ---
 
-## Quick Start
+## Quick start
 
 ```bash
-python -m pip install -e .
+pip install -e .
 helix-trial ./my-traces.jsonl
 ```
 
@@ -30,54 +32,52 @@ Output lands in `./helix_trial_output/` by default.
 
 ---
 
-## Try the Included Sample
+## Try the included samples
 
 ```bash
 helix-trial ./examples/langfuse_test.jsonl
 ```
 
-Compatibility path:
+Alternate path (same data):
 ```bash
 helix-trial ./data/partner_test_corpus/langfuse_test.jsonl
 ```
 
 ---
 
-## Supported Inputs
+## Supported input formats
 
-- Langfuse JSONL
-- OTLP JSON
-- OpenInference-style JSONL
-- Flat JSONL span exports
+| Format | File type |
+|--------|-----------|
+| Langfuse | `.jsonl` |
+| OTLP / OpenTelemetry | `.json` |
+| OpenInference | `.jsonl` |
+| Flat span exports | `.jsonl` |
+
+Pass a single file, a directory of files, or a `.zip` archive.
 
 ---
 
-## What You Get
+## Output
 
-A full local trial run produces:
+| File | What it is |
+|------|------------|
+| `trial_box/latest_summary.html` | Visual report — open this first |
+| `trial_box/latest_summary.json` | Machine-readable summary |
+| `trial_box/latest_metrics.json` | Detailed workload metrics |
+| `trial_box/latest_trace_pack_manifest.json` | Archive bundle manifest |
 
-| File | Purpose |
-|------|---------|
-| `helix_trial_output/trial_box/latest_summary.html` | Primary review surface — start here |
-| `helix_trial_output/trial_box/latest_summary.json` | Machine-readable summary |
-| `helix_trial_output/trial_box/latest_metrics.json` | Workload metrics |
-| `helix_trial_output/trial_box/latest_trace_pack_manifest.json` | Archive bundle manifest |
-
-Open `latest_summary.html` first.
+All output is written to `./helix_trial_output/` (override with `--output-dir`).
 
 ---
 
 ## Verdicts
 
-Helix returns one of three verdicts after a trial run:
-
 | Verdict | Meaning |
 |---------|---------|
-| `pilot_now` | Your trace data ingested cleanly, the archive replayed correctly, and compression is favourable. You're ready to run a real pilot. |
-| `narrow_pilot` | Helix can work with your data, but there are format gaps or workload characteristics worth discussing before a full rollout. |
-| `not_fit_yet` | Something in your trace structure or volume profile doesn't align with what Helix expects. The summary report will tell you why. |
-
-If you land on `pilot_now` or `narrow_pilot`, the logical next step is [Helix](https://traceintegrity.org/helix).
+| `pilot_now` | Traces ingested cleanly, archive replayed correctly, compression is favourable. Ready for a real pilot. |
+| `narrow_pilot` | Helix works with your data, but format gaps or workload characteristics are worth reviewing before a full rollout. |
+| `not_fit_yet` | Something in your trace structure or volume profile does not match what Helix expects. The report explains why. |
 
 ---
 
@@ -88,40 +88,34 @@ docker build -t helix-trial-community .
 docker run --rm -v "$(pwd)/traces:/data" helix-trial-community /data/my-traces.jsonl
 ```
 
-The Docker flow writes machine-readable outputs next to your mounted export:
+Docker writes machine-readable outputs next to your mounted export:
 
 - `my-traces.epl_trial_summary.json`
 - `my-traces.epl_trial_summary.md`
 - `my-traces.epl_trial_metrics.json`
 - `my-traces.epl_trial_manifest.json`
 
+Or use the convenience script:
+```bash
+./docker-trial.sh ./traces/my-traces.jsonl
+```
+
 ---
 
-## What's Not Included
+## What is not included
 
-This trial does not include:
-
-- Enterprise audit verdicts
-- Compliance checks and metadata
-- Drift detection modules
-- Internal dashboards
-
-These are part of [Helix](https://traceintegrity.org/helix).
+This trial does not include enterprise audit verdicts, compliance metadata, drift detection, or internal dashboards. Those are part of [Helix](https://traceintegrity.org/helix).
 
 ---
 
 ## License
 
-Apache-2.0
+Apache-2.0 — see [LICENSE](LICENSE).
 
 ---
 
-## Learn More
+## Learn more
 
 - Product: [traceintegrity.org/helix](https://traceintegrity.org/helix)
-- Community & updates: [traceintegrity.org](https://traceintegrity.org)
+- Community: [traceintegrity.org](https://traceintegrity.org)
 - Enterprise enquiries: [office@traceintegrity.org](mailto:office@traceintegrity.org)
-
----
-
-`helix-trial` is the public entry point. Start there.
