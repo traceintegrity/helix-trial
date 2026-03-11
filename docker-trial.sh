@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 set -euo pipefail
-docker run --rm -v "$(cd "$(dirname "$1")" && pwd)":/data epl-trial "/data/$(basename "$1")"
+docker run --rm -v "$(cd "$(dirname "$1")" && pwd)":/data helix-trial-community "/data/$(basename "$1")"

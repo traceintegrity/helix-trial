@@ -1,3 +1,11 @@
+"""Stub for the enterprise edition build process.
+
+This module is not used by the open-source trial.  All enterprise
+feature gating in the trial codebase goes through
+``epl.traces.extensions`` instead.  The file is kept so that the
+package layout matches the enterprise edition, which imports this
+module during its own build.
+"""
 from __future__ import annotations
 
 import importlib

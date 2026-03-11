@@ -15,6 +15,9 @@ dependencies = [
   "opentelemetry-sdk>=1.40"
 ]
 
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
 [project.scripts]
 helix-trial = "epl.traces.public_trial:main"
 
