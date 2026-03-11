@@ -1,4 +1,4 @@
-# Helix Trial — Community Edition
+# Helix Trial: Community Edition
 
 **Know in minutes whether your AI traces are audit-ready.**
 
