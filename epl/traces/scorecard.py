@@ -137,7 +137,6 @@ def _build_scorecard_report_html(*, summary: dict[str, object], rows: Sequence[d
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="10">
   <title>Trace Workflow Scorecard</title>
   <style>
     :root {{

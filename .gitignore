@@ -5,3 +5,7 @@ __pycache__/
 helix_trial_output/
 build/
 dist/
+*.egg-info/
+*.egg
+.venv/
+venv/

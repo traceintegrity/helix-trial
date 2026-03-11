@@ -1,4 +1,5 @@
 Trace Integrity
 
 This product is released under the Apache License 2.0.
-Open-source sample data attribution remains documented in OPEN_SOURCE_NOTICES.md.
+Sample data included in this repository is synthetic and does not contain
+real user traces, credentials, or personally identifiable information.
